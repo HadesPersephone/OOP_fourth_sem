@@ -50,11 +50,11 @@ bool CDepot::IdIsUnique(int id){
 
 // P U B L I C   M E T H O D S
 
-//	Input file should has next structure in each row:
+//	Input file should have next structure in each row:
 //<id>;<vehicle type>;<make/type>;<load capacity>;<cost per mile>;<average speed>;<max distance/nope>
-//	In case if we has truck so in this case in we look at third position as  make(manufacturer), 
+//	In case if we have truck we look at third position as make(manufacturer), 
 //in last position - max distance. In case if we have train third position is type of train, and 
-//last position - ebsent.
+//last position - absent.
 bool CDepot::loadDataFromCSV(std::string path) {
 	try {
 		if (path.empty()) throw "path string is empty!";
@@ -62,14 +62,14 @@ bool CDepot::loadDataFromCSV(std::string path) {
 		std::ifstream file(path); // Checking the path string
 		if (!file.is_open()) throw "seems like path string is incorrect!";
 
-		// If call this function and list 'vehicles' contains data, If call this function and list 
+		// If call this function and list 
 		//'vehicles' contains data, so this function clears list and upload new data from file.
 		if (!vehicles.empty()) {
 			vehicles.clear();
 			std::cout << "WARNING: list wasn't empty - old data removed and new uploaded from file!\n";
 		}
 
-		// Declaration variables
+		// Declaration of variables
 		int vehicle_type = 0, id = 0, max_dist = 0;
 		double avr_speed = 0, capacity = 0, cost_per_mile = 0;
 		std::string make_type; // Manufacturer or type of train
